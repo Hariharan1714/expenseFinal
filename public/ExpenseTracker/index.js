@@ -103,7 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const ispremiumuser = decodeToken.ispremiumuser;
     console.log("Is Premium User:", ispremiumuser);
 
-    // Workaround: Directly check if ispremiumuser equals 1
+    
     if (ispremiumuser == 1) {
         showPremiumuserMessage();
         showLeaderboard();
@@ -123,16 +123,27 @@ function showLeaderboard() {
     inputElement.value = 'Show Leaderboard';
     inputElement.onclick = async () => {
         const token = localStorage.getItem('token');
-        const userLeaderBoardArray = await axios.get('http://3.26.200.238:3000/premium/showLeaderBoard', { headers: {"Authorization" : token} });
-
-        var leaderboardElem = document.getElementById('leaderboard');
-        leaderboardElem.innerHTML = '<h1> Leader Board </h1>';
-        userLeaderBoardArray.data.forEach((userDetails) => {
-            leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total Expense - ${userDetails.total_cost || 0}</li>`;
-        });
+        
+        try {
+            const userLeaderBoardArray = await axios.get('http://3.26.200.238:3000/premium/showLeaderBoard', { headers: {"Authorization" : token} });
+            
+            if (userLeaderBoardArray.data && userLeaderBoardArray.data.length > 0) {
+                var leaderboardElem = document.getElementById('leaderboard');
+                leaderboardElem.innerHTML = '<h1> Leader Board </h1>';
+                userLeaderBoardArray.data.forEach((userDetails) => {
+                    leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total Expense - ${userDetails.total_cost || 0}</li>`;
+                });
+            } else {
+                alert('No leaderboard data available.');
+            }
+        } catch (err) {
+            console.error('Error fetching leaderboard:', err);
+            showError('Could not fetch leaderboard.');
+        }
     };
     document.getElementById("message").appendChild(inputElement);
 }
+
 
 // Download Expenses Function
 function downloadExpenses() {
