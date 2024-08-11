@@ -43,7 +43,7 @@ router.post('/forgot-password', async (req, res) => {
         });
 
         // Send email with reset link
-        const resetLink = `http://localhost:3000/user/reset-password?token=${resetToken}`;
+        const resetLink = `http://3.26.200.238/user/reset-password?token=${resetToken}`;
         const mailOptions = {
             from: 'your-email@gmail.com',
             to: email,
