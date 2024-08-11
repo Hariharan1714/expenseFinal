@@ -101,9 +101,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
     const decodeToken = parseJwt(token);
     const ispremiumuser = decodeToken.ispremiumuser;
+
     if (ispremiumuser) {
         showPremiumuserMessage();
-        showLeaderboard();
+        
     }
 
     axios.get('http://3.26.200.238:3000/expense/getexpenses', { headers: {"Authorization" : token} })
@@ -128,6 +129,7 @@ function showLeaderboard() {
             leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total Expense - ${userDetails.total_cost || 0}</li>`;
         });
     };
+
     document.getElementById("message").appendChild(inputElement);
 }
 
@@ -165,7 +167,7 @@ document.getElementById('rzp-button1').onclick = async function (e) {
             document.getElementById('rzp-button1').style.visibility = "hidden";
             document.getElementById('message').innerHTML = "You are a premium user";
             localStorage.setItem('token', res.data.token);
-            showLeaderboard();
+            showLeaderboard();  // Show leaderboard button after becoming premium
 
             // Show download button after upgrading to premium
             const downloadButton = document.getElementById('download-expenses');
