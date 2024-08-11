@@ -101,6 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
     const decodeToken = parseJwt(token);
     const ispremiumuser = decodeToken.ispremiumuser;
+    console.log("Is Premium User:", ispremiumuser);
 
     // Workaround: Directly check if ispremiumuser equals 1
     if (ispremiumuser == 1) {
