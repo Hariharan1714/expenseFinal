@@ -104,7 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (ispremiumuser) {
         showPremiumuserMessage();
-        
+        showLeaderboard();  // Only show leaderboard button for premium users
     }
 
     axios.get('http://3.26.200.238:3000/expense/getexpenses', { headers: {"Authorization" : token} })
