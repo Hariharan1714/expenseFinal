@@ -123,27 +123,16 @@ function showLeaderboard() {
     inputElement.value = 'Show Leaderboard';
     inputElement.onclick = async () => {
         const token = localStorage.getItem('token');
-        
-        try {
-            const userLeaderBoardArray = await axios.get('http://3.26.200.238:3000/premium/showLeaderBoard', { headers: {"Authorization" : token} });
-            
-            if (userLeaderBoardArray.data && userLeaderBoardArray.data.length > 0) {
-                var leaderboardElem = document.getElementById('leaderboard');
-                leaderboardElem.innerHTML = '<h1> Leader Board </h1>';
-                userLeaderBoardArray.data.forEach((userDetails) => {
-                    leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total Expense - ${userDetails.total_cost || 0}</li>`;
-                });
-            } else {
-                alert('No leaderboard data available.');
-            }
-        } catch (err) {
-            console.error('Error fetching leaderboard:', err);
-            showError('Could not fetch leaderboard.');
-        }
+        const userLeaderBoardArray = await axios.get('http://3.26.200.238:3000/premium/showLeaderBoard', { headers: {"Authorization" : token} });
+
+        var leaderboardElem = document.getElementById('leaderboard');
+        leaderboardElem.innerHTML = '<h1> Leader Board </h1>';
+        userLeaderBoardArray.data.forEach((userDetails) => {
+            leaderboardElem.innerHTML += `<li>Name - ${userDetails.name} Total Expense - ${userDetails.total_cost || 0}</li>`;
+        });
     };
     document.getElementById("message").appendChild(inputElement);
 }
-
 
 // Download Expenses Function
 function downloadExpenses() {
