@@ -9,48 +9,55 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <h1>
-        Expenses
-    </h1>
+    <h1>Expenses</h1>
     <form onsubmit="addNewExpense(event)">
-        <label for="expenseamount">Choose expenseamount:</label>
-        <input type="number" name="expenseamount" required> </input>
+        <label for="expenseamount">Choose expense amount:</label>
+        <input type="number" name="expenseamount" required></input>
         <label for="description">Choose description:</label>
-        <input type="text" name="description" required> </input>
+        <input type="text" name="description" required></input>
         <label for="category">Choose a category:</label>
         <select id="category" name="category">
-            <option value="fuel">fuel</option>
-            <option value="food">food</option>
-            <option value="shopping">shopping</option>
-            <option value="Movie">Movie</option>
-            <option value="Other">Others</option>
+            <option value="fuel">Fuel</option>
+            <option value="food">Food</option>
+            <option value="shopping">Shopping</option>
+            <option value="movie">Movie</option>
+            <option value="other">Other</option>
         </select>
         <button>Add Expense</button>
     </form>
+
+    <!-- Message div to display premium user message and leaderboard button -->
     <div id="message"></div>
+
+    <!-- Buy Premium Button -->
     <button id="rzp-button1">Buy Premium</button>
+
     <div class="content">
         <ul id="listOfExpenses"></ul>
+        <!-- Leaderboard will be displayed here -->
         <ul id="leaderboard"></ul>
     </div>
+
+    <!-- Razorpay Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    
+
+    <!-- List of Expenses -->
     <ul id='listOfExpenses'></ul>
 
+    <!-- Pagination Controls -->
     <div id="pagination-controls">
         <button onclick="prevPage()">Previous</button>
         <span id="page-info"></span>
         <button onclick="nextPage()">Next</button>
     </div>
 
-    <!-- Hide the download button by default -->
-<button id="download-expenses" style="visibility: hidden;">Download Expenses</button>
+    <!-- Hidden Download Expenses Button -->
+    <button id="download-expenses" style="visibility: hidden;">Download Expenses</button>
 
-
-    
-    <ul id="leaderboard"></ul>
-    <script src='./index.js'></script>
+    <!-- Axios Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!-- Custom JavaScript -->
+    <script src='./index.js'></script>
 </body>
 </html>
