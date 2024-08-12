@@ -6,7 +6,7 @@ function login(e) {
         password: e.target.password.value
     };
     
-    axios.post('http://3.26.200.238:3000/user/login', loginDetails)
+    axios.post('http://13.239.23.113:3000/user/login', loginDetails)
         .then(response => {
             alert(response.data.message);
             localStorage.setItem('token', response.data.token);
@@ -28,7 +28,7 @@ function forgotPassword(e) {
 
     const email = e.target.email.value;
 
-    axios.post('http://3.26.200.238:3000/user/forgot-password', { email })
+    axios.post('http://13.239.23.113:3000/user/forgot-password', { email })
         .then(response => {
             alert(response.data.message);
             document.getElementById('loginForm').style.display = 'block';
