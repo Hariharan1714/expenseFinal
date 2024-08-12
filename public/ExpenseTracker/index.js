@@ -104,7 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log("Is Premium User:", ispremiumuser);
 
     
-    if (ispremiumuser == 1) {
+    if (ispremiumuser) {
         showPremiumuserMessage();
         showLeaderboard();
     }
